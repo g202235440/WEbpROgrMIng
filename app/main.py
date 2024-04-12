@@ -3,5 +3,9 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def root ():
-    return{"messege":"Hello world"}
+def read_root():
+    return {"Hello":"World"}
+    
+@app.get("/iten/{iten_id}")
+def read_item(item_id:int,q:Union[str,None]=None):
+    return {"item_id":item_id,"q":q}
