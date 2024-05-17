@@ -20,10 +20,9 @@ def hello():
 @router.post("/tasks",response_model=task_schema.TaskCreateResponse)
 async def create_task(db:Session = Depends(get_db)):
     for p in range(1, 6):
-        for i in range(1, 6):
-            data =get_data(p,i,'crno')
-            task_body = task_schema.TaskCreate(title=data)
-            return task_crud.create_task(db,task_body)
+        data =get_data(p,1,'crno')
+        task_body = task_schema.TaskCreate(title=data)
+        return task_crud.create_task(db,task_body)
 
 
 @router.get("/tasks",response_model=list[task_schema.Task])#TaskCreateResponse로 바꾸기

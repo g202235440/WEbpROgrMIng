@@ -13,7 +13,7 @@ class Task(Base):
 
     done = relationship("Done",back_populates="stock",cascade="delete")
 
-class Done(Base):
+class Done(Base):#여기 지우기
     __tablename__="Done"
 
     id=Column(Integer,ForeignKey("stock.id"),primary_key=True)
