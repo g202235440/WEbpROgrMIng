@@ -13,13 +13,12 @@ def create_task(db: Session,task_create:task_schema.TaskCreate)->task_model.Task
     db.refresh(task)
     return task
 
-def get_tasks_with_done(db: Session)->list[tuple[int,str,bool]]:
+def get_tasks_with_done(db: Session)->list[tuple[int,str]]:
     result:Result = db.execute(
         select(
             task_model.Task.id,
             task_model.Task.title,
-            task_model.Done.id.isnot(None).label("done"),
-        ).outerjoin(task_model.Done)#필요없음
+        )
     )
     
     return result.all()

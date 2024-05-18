@@ -11,11 +11,5 @@ class Task(Base):
     id=Column(Integer, primary_key=True)
     title = Column(String(1024))
 
-    done = relationship("Done",back_populates="stock",cascade="delete")
 
-class Done(Base):#여기 지우기
-    __tablename__="Done"
 
-    id=Column(Integer,ForeignKey("stock.id"),primary_key=True)
-    
-    stock = relationship("Task",back_populates="done")

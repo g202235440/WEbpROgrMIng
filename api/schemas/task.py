@@ -18,7 +18,6 @@ class TaskCreateResponse(TaskCreate):
 
 class Task(TaskBase):#여기서 title만 가져가는건 그 데이터는 저장되어있다는 뜻
     id:int
-    done : bool = Field(False,description="완료 플래그")
     class Config:
         orm_mode=True
 
