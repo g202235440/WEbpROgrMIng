@@ -16,8 +16,9 @@ def hello():
 async def create_task(db: Session = Depends(get_db)):
     created_tasks = []
     for p in range(1,3):
-        data = get_data(p,1,'itmsNm')
-        task_body = task_schema.TaskCreate(title=data)
+        data = get_data('http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo',p,1,'itmsNm')
+        data2 = get_data('http://apis.data.go.kr/1160100/service/GetFinaStatInfoService_V2',p,1,'crno')
+        task_body = task_schema.TaskCreate(title=data,crno=data2)
         created_task = task_crud.create_task(db, task_body)
         created_tasks.append(created_task)
     return created_tasks

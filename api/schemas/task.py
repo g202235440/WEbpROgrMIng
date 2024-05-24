@@ -4,7 +4,7 @@ class TaskBase(BaseModel):
     title : str | None = Field(None, example="안녕하세요")
 
 class TaskCreate(TaskBase):
-    pass
+    crno : str | None = Field(None, example="00000000")
     #crno
     #주가
     #등등
