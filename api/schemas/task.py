@@ -5,10 +5,18 @@ class TaskBase(BaseModel):
 
 class TaskCreate(TaskBase):
     crno : str | None = Field(None, example="00000000")
-    #crno
-    #주가
-    #등등
-    #사실 다 나누는게 좋을것같지만 그건 귀찮으니 그냥 대충 하자
+    year : int | None = Field(None, example="00000000")
+    enpSaleAmt : float | None = Field(None, example="00.000000")
+    enpBzopPft : float | None = Field(None, example="00.000000")
+    iclsPalClcAmt : float | None = Field(None, example="00.000000")
+    enpCrtmNpf : float | None = Field(None, example="00.000000")
+    enpTastAmt: float | None = Field(None, example="00.000000")
+    enpTdbtAmt : float | None = Field(None, example="00.000000")
+    enpTcptAmt : float | None = Field(None, example="00.000000")
+    enpCptlAmt : float | None = Field(None, example="00.000000")
+    fnclDebtRto : float | None = Field(None, example="00.000000")
+   
+   #사실 다 나누는게 좋을것같지만 그건 귀찮으니 그냥 대충 하자
 
 
 class TaskCreateResponse(TaskCreate):
