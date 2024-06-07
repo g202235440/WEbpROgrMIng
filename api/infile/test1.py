@@ -6,7 +6,7 @@ router = APIRouter()
 import api.cruds.task as task_crud
 from api.db import get_db
 import api.schemas.task as task_schema
-from api.api.request import get_data
+from api.api.request import get_data, get_data2
 
 @router.get("/")
 def hello():
@@ -18,8 +18,8 @@ async def create_task(db: Session = Depends(get_db)):
     for p in range(5,10):
         url2='http://apis.data.go.kr/1160100/service/GetFinaStatInfoService_V2/getSummFinaStat_V2'
         #data = get_data('http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo',p,1,'itmsNm')
-        data = get_data('http://apis.data.go.kr/1160100/service/GetCorpBasicInfoService_V2/getCorpOutline_V2',p,1,'corpNm')
         data2 = get_data(url2,p,1,'crno')
+        data = get_data2('http://apis.data.go.kr/1160100/service/GetCorpBasicInfoService_V2/getCorpOutline_V2?crno={data2}',p,1,'corpNm')
         data3 = get_data(url2,p,1,'bizYear')
         data4 = get_data(url2,p,1,'enpSaleAmt')
         data5 = get_data(url2,p,1,'enpBzopPft')
