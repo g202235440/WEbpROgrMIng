@@ -16,7 +16,7 @@ def hello():
 @router.post("/tasks", response_model=List[task_schema.TaskCreateResponse])
 async def create_task(db: Session = Depends(get_db)):
     created_tasks = []
-    for p in [30, 40, 50, 60, 70]:
+    for p in range(1, 51):
         url2='http://apis.data.go.kr/1160100/service/GetFinaStatInfoService_V2/getSummFinaStat_V2'
         #data = get_data('http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo',p,1,'itmsNm')
         data2 = get_data(url2,p,1,'crno')
