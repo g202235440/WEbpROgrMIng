@@ -1,0 +1,58 @@
+<!-- tem.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .task {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .task:last-child {
+            border-bottom: none;
+        }
+        .task-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .task-score {
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Results</h1>
+        {% for task in result %}
+            <div class="task">
+                <div class="task-title">Task ID: {{ task.task_id }}</div>
+                <div class="task-title">Title: {{ task.title }}</div>
+                <div class="task-score">Score: {{ task.score }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

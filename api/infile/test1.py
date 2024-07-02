@@ -1,5 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends,Request
 from sqlalchemy.orm import Session
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from typing import List
 router = APIRouter()
 
@@ -8,10 +10,14 @@ from api.db import get_db
 import api.schemas.task as task_schema
 from api.api.request import get_data, get_data2
 from api.infile.algorithm import kell
+# Set the templates directory using an absolute path
 
-@router.get("/")
-def hello():
-    return{"message":"hello"}
+templates = Jinja2Templates(directory="api/infile/templates")
+
+@router.get("/", response_class=HTMLResponse)
+async def hello(request: Request):
+    return templates.TemplateResponse("tem.html", {"request": request})
+
     
 @router.post("/tasks", response_model=List[task_schema.TaskCreateResponse])
 async def create_task(db: Session = Depends(get_db)):
@@ -41,7 +47,7 @@ async def list_task(db:Session = Depends(get_db)):
     tasks = task_crud.get_tasks_with_done(db)  # 0-based index, so the fourth element is at index 3
     return tasks
 
-@router.get("/task")
-async def result(db:Session = Depends(get_db)):
-    result=kell(db)
-    return result
+@router.get("/task", response_class=HTMLResponse)
+async def result(request: Request, db: Session = Depends(get_db)):
+    result = kell(db)  # Replace with your actual function to fetch data from database
+    return templates.TemplateResponse("tem1.html", {"request": request, "result": result})
